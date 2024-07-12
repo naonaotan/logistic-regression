@@ -68,10 +68,14 @@ A stacked bar chart is created using ggplot2 to visualize the prevalence of coro
 
 ![Gender](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20gender.png)
 
+The provided image shows the prevalence of coronary artery disease (CHD) by males, since the "Yes CHD" segment is slightly taller for males compared to females.
+
 #### Coronary Artery Disease by Age
 A similar stacked bar chart is created to show the prevalence of CHD across different age groups. This can reveal trends in CHD prevalence across different age groups. You might observe an increasing prevalence of CHD with advancing age, though the specific trends would depend on the data distribution.
 
 ![Age](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20age.png)
+
+The graphic reveals a general trend of increasing CHD prevalence with advancing age (blue bars become more prominent).
 
 #### Boxplots for Systolic and Diastolic Blood Pressure
 This plot helps us compare the blood pressure distributions between the systolic and diastolic blood pressure (SBP and DBP) for individuals with and without coronary artery disease (CHD).
