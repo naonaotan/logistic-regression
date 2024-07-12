@@ -65,12 +65,15 @@ These models will help identify which factors have the strongest association wit
 ### Data Visualization
 #### Coronary Artery Disease by Sex
 A stacked bar chart is created using ggplot2 to visualize the prevalence of coronary heart disease (CHD) for males and females. This helps understand the distribution of CHD across genders.
+![Gender](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20gender.png)
 
 #### Coronary Artery Disease by Age
 A similar stacked bar chart is created to show the prevalence of CHD across different age groups. This can reveal trends in CHD prevalence across different age groups. You might observe an increasing prevalence of CHD with advancing age, though the specific trends would depend on the data distribution.
+![Age](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20age.png)
 
 #### Boxplots for Systolic and Diastolic Blood Pressure
 This plot helps us compare the blood pressure distributions between the systolic and diastolic blood pressure (SBP and DBP) for individuals with and without coronary artery disease (CHD).
+![SBP/DBP](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20systolic%20and%20diastolic%20blood%20pressure.png)
 
 #### Boxplots for BMI and Heart Rate
 This plot helps us compare the distributions of body mass index (BMI) and heart rate for individuals with and without CHD.
