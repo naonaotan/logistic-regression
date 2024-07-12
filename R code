@@ -1,3 +1,10 @@
+framingham <- read_csv("framingham.csv")
+View(framingham)
+
+library(ggplot2)
+library(cowplot)
+library(dplyr)
+
 # Teste
 # Substituir os NA na coluna 'education' com o valor 1.979 aproximado
 framingham$education[is.na(framingham$education)] <- 2
