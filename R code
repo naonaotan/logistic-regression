@@ -1,6 +1,7 @@
 framingham <- read_csv("framingham.csv")
 View(framingham)
 
+install.packages("ggplot2")
 library(ggplot2)
 library(cowplot)
 library(dplyr)
