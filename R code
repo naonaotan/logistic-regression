@@ -3,7 +3,9 @@ View(framingham)
 
 install.packages("ggplot2")
 library(ggplot2)
+install.packages("cowplot")
 library(cowplot)
+install.packages("dplyr")
 library(dplyr)
 
 # Teste
@@ -53,34 +55,34 @@ glm(TenYearCHD ~ BMI, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ heartRate, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ glucose, family = binomial(link = "logit"), data = framingham)
 
-# Visualizações com ggplot2
-library(ggplot2)
 
-# Histograma da prevalência de doença coronariana por sexo
+# Histogram to visualize Coronary Artery Disease by Sex
 histogramsex <- ggplot(framingham, aes(x = factor(male), fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
-  labs(title = "Doença arterial coronariana por Sexo", x = "Sexo: 0=Fem, 1=Masc", y = "Contagem") +
+  labs(title = "Coronary Artery Disease by Gender", x = "Gender: 0=Fem, 1=Male", y = "Count") +
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramsex)
 
-# Histograma da prevalência de doença coronariana por idade
+# Histogram to visualize Coronary Artery Disease by Age
 histogramage <- ggplot(framingham, aes(x = age, fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
-  labs(title = "Doença arterial coronariana por Idade", x = "Idade", y = "Contagem") +
+  labs(title = "Coronary Artery Disease by Age", x = "Age", y = "Count") +
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramage)
 
-# Boxplots combinados da prevalência de doença coronariana por pressão arterial sistólica e diastólica
+# Boxplots for Systolic and Diastolic Blood Pressure
 combined_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), fill = as.factor(TenYearCHD))) +
-  geom_boxplot(aes(y = sysBP), notch = TRUE, position = position_dodge(width = 0.75), color = "#1E2C3C") +  
-  geom_boxplot(aes(y = diaBP), notch = TRUE, position = position_dodge(width = 0.75), color = "#49A4E4") +
-  labs(title = "Doença arterial coronariana por Pressão Sanguínea Sistólica e Diastólica",  
-       x = "Doença coronariana em 10 anos (CHD)", y = "Pressão Sanguínea") +
+  geom_boxplot(aes(y = sysBP), notch = TRUE, position = position_dodge(width = 0.75)) +  
+  geom_boxplot(aes(y = diaBP), notch = TRUE, position = position_dodge(width = 0.75)) +
+  labs(title = "Coronary Artery Disease by Systolic and Diastolic Blood Pressure",  
+       x = "10-Year Coronary Heart Disease (CHD)", y = "Blood Pressure") +
+  scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
+                    name = "CHD Status", 
+                    labels = c("No CHD", "CHD")) +  # Customize legend
   theme_minimal()
 print(combined_plot)
 
-# Boxplots da prevalência de doença coronariana por IMC e batimento cardíaco
-library(cowplot)
+# Boxplots for BMI and Heart Rate
 x <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = BMI, fill = as.factor(TenYearCHD))) +
   geom_boxplot()
 y <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = heartRate, fill = as.factor(TenYearCHD))) +
@@ -89,8 +91,7 @@ p <- plot_grid(x, y)
 title <- ggdraw() + draw_label("Doença arterial coronariana por IMC / Batimento cardíaco")
 plot_grid(title, p, ncol = 1, rel_heights = c(0.1, 1))
 
-# Histograma da prevalência de doença coronariana por AVC
-library(dplyr)
+# Visualize Coronary Artery Disease by Stroke
 filtered_data <- filter(framingham, prevalentStroke == 1)
 histogramStroke <- ggplot(filtered_data, aes(x = factor(prevalentStroke), fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
@@ -98,7 +99,7 @@ histogramStroke <- ggplot(filtered_data, aes(x = factor(prevalentStroke), fill =
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramStroke)
 
-# Histograma da prevalência de doença coronariana por pressão arterial diastólica (diaBP)
+# Visualize Coronary Artery Disease by Diastolic Blood Pressure
 histogramdiaBP <- ggplot(filtered_data, aes(x = diaBP, fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
   labs(title = "Doença arterial coronariana por Pressão Arterial Diastólica", x = "Pressão Arterial Diastólica", y = "Contagem") +
