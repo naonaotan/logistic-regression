@@ -1,30 +1,33 @@
 # Teste
 # Substituir os NA na coluna 'education' com o valor 1.979 aproximado
 framingham$education[is.na(framingham$education)] <- 2
+# Deu certo aplicar a média para substituir os NA
 # Substituir os NA de todas as colunas por sua respectiva média
-framingham$cigsPerDay[is.na(framingham$cigsPerDay)] <- 9
-framingham$BPMeds[is.na(framingham$BPMeds)] <- 0
-framingham$totChol[is.na(framingham$totChol)] <- 237
-framingham$BMI[is.na(framingham$BMI)] <- 25.80
-framingham$heartRate[is.na(framingham$heartRate)] <- 76
-framingham$glucose[is.na(framingham$glucose)] <- 82
+# Seria mais eficiente calcular as médias das colunas de forma programática
+framingham$cigsPerDay[is.na(framingham$cigsPerDay)] <- mean(framingham$cigsPerDay, na.rm = TRUE)
+framingham$BPMeds[is.na(framingham$BPMeds)] <- mean(framingham$BPMeds, na.rm = TRUE)
+framingham$totChol[is.na(framingham$totChol)] <- mean(framingham$totChol, na.rm = TRUE)
+framingham$BMI[is.na(framingham$BMI)] <- mean(framingham$BMI, na.rm = TRUE)
+framingham$heartRate[is.na(framingham$heartRate)] <- mean(framingham$heartRate, na.rm = TRUE)
+framingham$glucose[is.na(framingham$glucose)] <- mean(framingham$glucose, na.rm = TRUE)
 
+# education e diaBP
 # Cálculo da variância das colunas 'prevalentHyp' e 'diaBP'
-var(framingham$prevalentHyp)
-var(framingham$diaBP)
+var_prevalentHyp <- var(framingham$prevalentHyp)
+var_diaBP <- var(framingham$diaBP)
 
 # Cálculo da covariância entre todas as colunas
-cov(framingham)
+cov_matrix <- cov(framingham)
 
-# Cálculo da raiz quadrada das variâncias calculadas anteriormente
-sqrt(0.214149313)
-sqrt(141.86833820)
+# prevalentHyp cov prevalentHyp é 0.214149313
+# diaBP cov diaBP é 141.86833820
+sqrt_var_prevalentHyp <- sqrt(var_prevalentHyp)
+sqrt_var_diaBP <- sqrt(var_diaBP)
 
-# Cálculo da média das colunas 'prevalentHyp' e 'diaBP'
-mean(framingham$prevalentHyp)
-mean(framingham$diaBP)
+mean_prevalentHyp <- mean(framingham$prevalentHyp)
+mean_diaBP <- mean(framingham$diaBP)
 
-# Regressões logísticas para prever 'TenYearCHD' com várias variáveis independentes
+# Regressão logística para prever 'TenYearCHD' com várias variáveis independentes
 glm(TenYearCHD ~ ., family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ male, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ age, family = binomial(link = "logit"), data = framingham)
@@ -32,7 +35,6 @@ glm(TenYearCHD ~ education, family = binomial(link = "logit"), data = framingham
 glm(TenYearCHD ~ currentSmoker, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ cigsPerDay, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ BPMeds, family = binomial(link = "logit"), data = framingham)
-glm(TenYearCHD ~ currentSmoker, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ prevalentStroke, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ prevalentHyp, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ diabetes, family = binomial(link = "logit"), data = framingham)
@@ -43,52 +45,54 @@ glm(TenYearCHD ~ BMI, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ heartRate, family = binomial(link = "logit"), data = framingham)
 glm(TenYearCHD ~ glucose, family = binomial(link = "logit"), data = framingham)
 
-# Criação de um histograma para mostrar a prevalência da doença coronariana por sexo
+# Visualizações com ggplot2
 library(ggplot2)
-histogramsex <- ggplot(framingham, aes(x = male, fill = factor(TenYearCHD))) +
+
+# Histograma da prevalência de doença coronariana por sexo
+histogramsex <- ggplot(framingham, aes(x = factor(male), fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
   labs(title = "Doença arterial coronariana por Sexo", x = "Sexo: 0=Fem, 1=Masc", y = "Contagem") +
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramsex)
 
-# Criação de um histograma para mostrar a prevalência da doença coronariana por idade
+# Histograma da prevalência de doença coronariana por idade
 histogramage <- ggplot(framingham, aes(x = age, fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
   labs(title = "Doença arterial coronariana por Idade", x = "Idade", y = "Contagem") +
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramage)
 
-# Criação de boxplots combinados para mostrar a prevalência da doença coronariana por pressão arterial sistólica e diastólica
-combined_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), fill = TenYearCHD)) +
-  geom_boxplot(aes(y = sysBP), notch = TRUE, position = position_dodge(width = 0.75), color = "#1E2C3C") + 
+# Boxplots combinados da prevalência de doença coronariana por pressão arterial sistólica e diastólica
+combined_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), fill = as.factor(TenYearCHD))) +
+  geom_boxplot(aes(y = sysBP), notch = TRUE, position = position_dodge(width = 0.75), color = "#1E2C3C") +  
   geom_boxplot(aes(y = diaBP), notch = TRUE, position = position_dodge(width = 0.75), color = "#49A4E4") +
-  labs(title = "Doença arterial coronariana por Pressão Sanguínea Sis e Dia", 
-       x = "Doença coronariana em 10 anos (CHD)")
+  labs(title = "Doença arterial coronariana por Pressão Sanguínea Sistólica e Diastólica",  
+       x = "Doença coronariana em 10 anos (CHD)", y = "Pressão Sanguínea") +
+  theme_minimal()
 print(combined_plot)
 
-# Criação de boxplots para mostrar a prevalência da doença coronariana por IMC e batimento cardíaco
+# Boxplots da prevalência de doença coronariana por IMC e batimento cardíaco
 library(cowplot)
-x <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = BMI, fill = TenYearCHD)) +
+x <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = BMI, fill = as.factor(TenYearCHD))) +
   geom_boxplot()
-y <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = heartRate, fill = TenYearCHD)) +
+y <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = heartRate, fill = as.factor(TenYearCHD))) +
   geom_boxplot()
 p <- plot_grid(x, y)
 title <- ggdraw() + draw_label("Doença arterial coronariana por IMC / Batimento cardíaco")
-plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1))
+plot_grid(title, p, ncol = 1, rel_heights = c(0.1, 1))
 
-# Criação de um histograma para mostrar a prevalência da doença coronariana por AVC
-library(ggplot2)
+# Histograma da prevalência de doença coronariana por AVC
 library(dplyr)
 filtered_data <- filter(framingham, prevalentStroke == 1)
-histogramStroke <- ggplot(filtered_data, aes(x = prevalentStroke, fill = factor(TenYearCHD))) +
+histogramStroke <- ggplot(filtered_data, aes(x = factor(prevalentStroke), fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
   labs(title = "Doença arterial coronariana por AVC", x = "AVC", y = "Contagem") +
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramStroke)
 
-# Criação de um histograma para mostrar a prevalência da doença coronariana por pressão arterial diastólica
-histogramdiaBP <- ggplot(filtered_data, aes(x = heartRate, fill = factor(TenYearCHD))) +
+# Histograma da prevalência de doença coronariana por pressão arterial diastólica (diaBP)
+histogramdiaBP <- ggplot(filtered_data, aes(x = diaBP, fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
-  labs(title = "Doença arterial coronariana por diaBP", x = "diaBP", y = "Contagem") +
+  labs(title = "Doença arterial coronariana por Pressão Arterial Diastólica", x = "Pressão Arterial Diastólica", y = "Contagem") +
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramdiaBP)
