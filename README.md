@@ -68,7 +68,7 @@ A stacked bar chart is created using ggplot2 to visualize the prevalence of coro
 
 ![Gender](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20gender.png)
 
-The provided image shows the prevalence of coronary artery disease (CHD) by males, since the "Yes CHD" segment is slightly taller for males compared to females.
+The provided image shows the prevalence of coronary heart disease (CHD) by males, since the "Yes CHD" segment is slightly taller for males compared to females.
 
 #### Coronary Heart Disease by Age
 A similar stacked bar chart is created to show the prevalence of CHD across different age groups. This can reveal trends in CHD prevalence across different age groups. You might observe an increasing prevalence of CHD with advancing age, though the specific trends would depend on the data distribution.
@@ -77,10 +77,28 @@ A similar stacked bar chart is created to show the prevalence of CHD across diff
 
 The graphic reveals a general trend of increasing CHD prevalence with advancing age (blue bars become more prominent).
 
-#### Boxplots for Systolic and Diastolic Blood Pressure
-This plot helps us compare the blood pressure distributions between the systolic and diastolic blood pressure (SBP and DBP) for individuals with and without coronary artery disease (CHD).
+#### Boxplots for Coronary Heart Disease by Systolic Blood Pressure (Left) and Diastolic Blood Pressure (Right)
+This plot helps us compare the blood pressure distributions between the systolic and diastolic blood pressure (SBP and DBP) for individuals with and without coronary heart disease (CHD).
 
-![SBP/DBP](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20systolic%20and%20diastolic%20blood%20pressure.png)
+**Axes**:
+
+- **X-axis**: 10-Year Coronary Heart Disease (CHD), with 0 indicating no CHD and 1 indicating CHD.
+
+- **Y-axis (Left Plot)**: Systolic Blood Pressure (sysBP).
+
+- **Y-axis (Right Plot)**: Diastolic Blood Pressure (diaBP).
+
+**Legend**:
+
+- CHD Status: Indicates whether the individual has CHD (in blue) or not (in dark gray).
+
+![SBP/DBP](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20systolic%20and%20diastolic%20blood%20pressure.png](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/sysBP%20and%20diaBP.png))
+
+**Systolic Blood Pressure**: There is a clear distinction between the median values of individuals with and without CHD, with those having CHD showing higher median systolic blood pressure and more variability.
+
+**Diastolic Blood Pressure**: While the difference in median values is less pronounced than in systolic blood pressure, individuals with CHD still tend to have higher diastolic blood pressure and more variability.
+
+This analysis reinforces the significance of systolic blood pressure as a stronger indicator of coronary heart disease compared to diastolic blood pressure in this dataset. However, diastolic blood pressure also shows some degree of association with CHD.
 
 #### Boxplots for BMI and Heart Rate
 This plot helps us compare the distributions of body mass index (BMI) and heart rate for individuals with and without CHD.
