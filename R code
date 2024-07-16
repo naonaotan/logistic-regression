@@ -58,24 +58,24 @@ glm(TenYearCHD ~ heartRate, family = binomial(link = "logit"), data = framingham
 glm(TenYearCHD ~ glucose, family = binomial(link = "logit"), data = framingham)
 
 
-# Histogram to visualize Coronary Artery Disease by Sex
+# Histogram to visualize Coronary Heart Disease by Sex
 histogramsex <- ggplot(framingham, aes(x = factor(male), fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
-  labs(title = "Coronary Artery Disease by Gender", x = "Gender: 0=Fem, 1=Male", y = "Count") +
+  labs(title = "Coronary Heart Disease by Gender", x = "Gender: 0=Fem, 1=Male", y = "Count") +
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramsex)
 
-# Histogram to visualize Coronary Artery Disease by Age
+# Histogram to visualize Coronary Heart Disease by Age
 histogramage <- ggplot(framingham, aes(x = age, fill = factor(TenYearCHD))) +
   geom_bar(position = "stack", stat = "count") +
-  labs(title = "Coronary Artery Disease by Age", x = "Age", y = "Count") +
+  labs(title = "Coronary Heart Disease by Age", x = "Age", y = "Count") +
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramage)
 
 # Plot for Systolic Blood Pressure (sysBP)
 sysBP_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), y = sysBP, fill = as.factor(TenYearCHD))) +
   geom_boxplot(notch = TRUE) +  
-  labs(title = "Coronary Artery Disease by Systolic Blood Pressure",  
+  labs(title = "Coronary Heart Disease by Systolic Blood Pressure",  
        x = "10-Year Coronary Heart Disease (CHD)", y = "Systolic Blood Pressure") +
   scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
                     name = "CHD Status", 
@@ -85,7 +85,7 @@ sysBP_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), y = sysBP
 # Plot for Diastolic Blood Pressure (diaBP)
 diaBP_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), y = diaBP, fill = as.factor(TenYearCHD))) +
   geom_boxplot(notch = TRUE) +  
-  labs(title = "Coronary Artery Disease by Diastolic Blood Pressure",  
+  labs(title = "Coronary Heart Disease by Diastolic Blood Pressure",  
        x = "10-Year Coronary Heart Disease (CHD)", y = "Diastolic Blood Pressure") +
   scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
                     name = "CHD Status", 
