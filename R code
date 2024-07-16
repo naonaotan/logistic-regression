@@ -95,26 +95,36 @@ diaBP_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), y = diaBP
 # Combine the two plots into one display
 grid.arrange(sysBP_plot, diaBP_plot, ncol = 2)
 
-# Boxplots for BMI and Heart Rate
-x <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = BMI, fill = as.factor(TenYearCHD))) +
-  geom_boxplot()
-y <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = heartRate, fill = as.factor(TenYearCHD))) +
-  geom_boxplot()
-p <- plot_grid(x, y)
-title <- ggdraw() + draw_label("Doença arterial coronariana por IMC / Batimento cardíaco")
-plot_grid(title, p, ncol = 1, rel_heights = c(0.1, 1))
+# Plot for Body Mass Index (BMI)
+# Load necessary libraries
+library(ggplot2)
+library(cowplot)
 
-# Visualize Coronary Artery Disease by Stroke
-filtered_data <- filter(framingham, prevalentStroke == 1)
-histogramStroke <- ggplot(filtered_data, aes(x = factor(prevalentStroke), fill = factor(TenYearCHD))) +
-  geom_bar(position = "stack", stat = "count") +
-  labs(title = "Doença arterial coronariana por AVC", x = "AVC", y = "Contagem") +
-  scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
-print(histogramStroke)
+# Boxplot for Body Mass Index (BMI)
+bmi_plot <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = BMI, fill = as.factor(TenYearCHD))) +
+  geom_boxplot() +
+  labs(title = "Coronary Heart Disease by Body Mass Index (BMI)", 
+       x = "CHD", 
+       y = "BMI") +
+  scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
+                    name = "CHD Status", 
+                    labels = c("No CHD", "CHD")) +
+  theme_minimal()
 
-# Visualize Coronary Artery Disease by Diastolic Blood Pressure
-histogramdiaBP <- ggplot(filtered_data, aes(x = diaBP, fill = factor(TenYearCHD))) +
-  geom_bar(position = "stack", stat = "count") +
-  labs(title = "Doença arterial coronariana por Pressão Arterial Diastólica", x = "Pressão Arterial Diastólica", y = "Contagem") +
-  scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
-print(histogramdiaBP)
+# Histogram for Total Cholesterol (totChol)
+chol_histogram <- ggplot(data = framingham, aes(x = totChol, fill = as.factor(TenYearCHD))) +
+  geom_histogram(binwidth = 10, position = "dodge") +
+  labs(title = "Distribution of Total Cholesterol by CHD Status", 
+       x = "Total Cholesterol", 
+       y = "Count") +
+  scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
+                    name = "CHD Status", 
+                    labels = c("No CHD", "CHD")) +
+  theme_minimal()
+
+# Combine the two plots
+combined_plot <- plot_grid(bmi_plot, chol_histogram, ncol = 1, rel_heights = c(1, 1))
+
+# Display the combined plot
+print(combined_plot)
+
