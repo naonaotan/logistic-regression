@@ -66,14 +66,14 @@ These models will help identify which factors have the strongest association wit
 #### Coronary Heart Disease by Sex
 A stacked bar chart is created using ggplot2 to visualize the prevalence of coronary heart disease (CHD) for males and females. This helps understand the distribution of CHD across genders.
 
-![Gender](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20gender.png)
+![Gender](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/CHD%20by%20gender.png)
 
 The provided image shows the prevalence of coronary heart disease (CHD) by males, since the "Yes CHD" segment is slightly taller for males compared to females.
 
 #### Coronary Heart Disease by Age
 A similar stacked bar chart is created to show the prevalence of CHD across different age groups. This can reveal trends in CHD prevalence across different age groups. You might observe an increasing prevalence of CHD with advancing age, though the specific trends would depend on the data distribution.
 
-![Age](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20age.png)
+![Age](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/CHD%20by%20age.png)
 
 The graphic reveals a general trend of increasing CHD prevalence with advancing age (blue bars become more prominent).
 
@@ -92,7 +92,7 @@ This plot helps us compare the blood pressure distributions between the systolic
 
 - CHD Status: Indicates whether the individual has CHD (in blue) or not (in dark gray).
 
-![SBP/DBP](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20systolic%20and%20diastolic%20blood%20pressure.png](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/sysBP%20and%20diaBP.png))
+![SBP/DBP](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/sysBP%20and%20diaBP.png)
 
 **Systolic Blood Pressure**: There is a clear distinction between the median values of individuals with and without CHD, with those having CHD showing higher median systolic blood pressure and more variability.
 
