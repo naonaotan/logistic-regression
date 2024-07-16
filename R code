@@ -95,11 +95,6 @@ diaBP_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), y = diaBP
 # Combine the two plots into one display
 grid.arrange(sysBP_plot, diaBP_plot, ncol = 2)
 
-# Plot for Body Mass Index (BMI)
-# Load necessary libraries
-library(ggplot2)
-library(cowplot)
-
 # Boxplot for Body Mass Index (BMI)
 bmi_plot <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = BMI, fill = as.factor(TenYearCHD))) +
   geom_boxplot() +
@@ -124,7 +119,17 @@ chol_histogram <- ggplot(data = framingham, aes(x = totChol, fill = as.factor(Te
 
 # Combine the two plots
 combined_plot <- plot_grid(bmi_plot, chol_histogram, ncol = 1, rel_heights = c(1, 1))
-
-# Display the combined plot
 print(combined_plot)
 
+# Histogram of Diabetes
+diabetes_plot <- ggplot(framingham, aes(x = as.factor(diabetes), fill = as.factor(TenYearCHD))) +
+  geom_bar(position = "stack", stat = "count") +
+  labs(title = "Coronary Heart Disease by Diabetes", 
+       x = "Diabetes Status", 
+       y = "Count") +
+  scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
+                    name = "CHD Status", 
+                    labels = c("No CHD", "CHD")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) # Center the plot title
+print(diabetes_plot)
