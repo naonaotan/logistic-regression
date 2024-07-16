@@ -100,11 +100,24 @@ This plot helps us compare the blood pressure distributions between the systolic
 
 This analysis reinforces the significance of systolic blood pressure as a stronger indicator of coronary heart disease compared to diastolic blood pressure in this dataset. However, diastolic blood pressure also shows some degree of association with CHD.
 
-#### Boxplots for BMI and Heart Rate
-This plot helps us compare the distributions of body mass index (BMI) and heart rate for individuals with and without CHD.
+#### Boxplots for Body Mass Index and Total Cholesterol
+This plot helps us compare the distributions of body mass index (BMI) and Total Cholesterol for individuals with and without CHD.
 
-#### Coronary Heart Disease by Stroke
-This helps us understand the relationship between stroke and CHD risk.
+![BMI/TotChol](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/BMI%20and%20totchol.png)
 
-#### Coronary Heart Disease by Diastolic Blood Pressure
-This helps us understand the relationship between DBP and CHD risk specifically for the subgroup.
+- There is a slight tendency for individuals with CHD to have a higher BMI, but the overlap suggests BMI alone might not be a strong differentiating factor for CHD risk.
+- Individuals with CHD tend to have higher cholesterol levels compared to those without CHD, but there is still considerable overlap.
+
+Both BMI and total cholesterol are important factors in understanding the risk of coronary heart disease.
+While there are slight tendencies for higher BMI and higher cholesterol in individuals with CHD, neither factor alone is a definitive predictor.
+
+#### Coronary Heart Disease and Diabetes
+Lastly, let's compare the relationship between diabetes and CHD risk.
+
+![Diabetes]([https://raw.githubusercontent.com/naonaotan/logistic-regression/main/CHD%20by%20diabetes.png](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/CHD%20and%20diabetes.png))
+
+- The vast majority of individuals in the dataset do not have diabetes (indicated by the tall bars at 0).
+- Among those without diabetes, a significantly larger portion did not develop CHD (dark blue bar) compared to those who did develop CHD (light blue bar).
+- For individuals with diabetes (1), the light blue bar is very small, indicating that relatively few individuals with diabetes developed CHD. However, it is difficult to make a detailed comparison due to the small sample size of individuals with diabetes.
+In conclusion, the imbalance in the dataset between those with and without diabetes makes it difficult to draw definitive conclusions.
+A larger or more balanced sample of individuals with diabetes could provide a clearer understanding of the relationship between diabetes and CHD.
