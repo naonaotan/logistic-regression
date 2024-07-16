@@ -7,6 +7,8 @@ install.packages("cowplot")
 library(cowplot)
 install.packages("dplyr")
 library(dplyr)
+install.packages("gridExtra")
+library(gridExtra)
 
 # Teste
 # Substituir os NA na coluna 'education' com o valor 1.979 aproximado
@@ -70,17 +72,28 @@ histogramage <- ggplot(framingham, aes(x = age, fill = factor(TenYearCHD))) +
   scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
 print(histogramage)
 
-# Boxplots for Systolic and Diastolic Blood Pressure
-combined_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), fill = as.factor(TenYearCHD))) +
-  geom_boxplot(aes(y = sysBP), notch = TRUE, position = position_dodge(width = 0.75)) +  
-  geom_boxplot(aes(y = diaBP), notch = TRUE, position = position_dodge(width = 0.75)) +
-  labs(title = "Coronary Artery Disease by Systolic and Diastolic Blood Pressure",  
-       x = "10-Year Coronary Heart Disease (CHD)", y = "Blood Pressure") +
+# Plot for Systolic Blood Pressure (sysBP)
+sysBP_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), y = sysBP, fill = as.factor(TenYearCHD))) +
+  geom_boxplot(notch = TRUE) +  
+  labs(title = "Coronary Artery Disease by Systolic Blood Pressure",  
+       x = "10-Year Coronary Heart Disease (CHD)", y = "Systolic Blood Pressure") +
   scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
                     name = "CHD Status", 
-                    labels = c("No CHD", "CHD")) +  # Customize legend
+                    labels = c("No CHD", "CHD")) + 
   theme_minimal()
-print(combined_plot)
+
+# Plot for Diastolic Blood Pressure (diaBP)
+diaBP_plot <- ggplot(data = framingham, aes(x = as.factor(TenYearCHD), y = diaBP, fill = as.factor(TenYearCHD))) +
+  geom_boxplot(notch = TRUE) +  
+  labs(title = "Coronary Artery Disease by Diastolic Blood Pressure",  
+       x = "10-Year Coronary Heart Disease (CHD)", y = "Diastolic Blood Pressure") +
+  scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
+                    name = "CHD Status", 
+                    labels = c("No CHD", "CHD")) + 
+  theme_minimal()
+
+# Combine the two plots into one display
+grid.arrange(sysBP_plot, diaBP_plot, ncol = 2)
 
 # Boxplots for BMI and Heart Rate
 x <- ggplot(data = framingham, mapping = aes(x = as.factor(TenYearCHD), y = BMI, fill = as.factor(TenYearCHD))) +
