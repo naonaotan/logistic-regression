@@ -63,14 +63,14 @@ The family = binomial(link = "logit") argument specifies a logistic regression m
 These models will help identify which factors have the strongest association with the risk of developing coronary heart disease in 10 years.
 
 ### Data Visualization
-#### Coronary Artery Disease by Sex
+#### Coronary Heart Disease by Sex
 A stacked bar chart is created using ggplot2 to visualize the prevalence of coronary heart disease (CHD) for males and females. This helps understand the distribution of CHD across genders.
 
 ![Gender](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20gender.png)
 
 The provided image shows the prevalence of coronary artery disease (CHD) by males, since the "Yes CHD" segment is slightly taller for males compared to females.
 
-#### Coronary Artery Disease by Age
+#### Coronary Heart Disease by Age
 A similar stacked bar chart is created to show the prevalence of CHD across different age groups. This can reveal trends in CHD prevalence across different age groups. You might observe an increasing prevalence of CHD with advancing age, though the specific trends would depend on the data distribution.
 
 ![Age](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/heart%20disease%20by%20age.png)
@@ -85,8 +85,8 @@ This plot helps us compare the blood pressure distributions between the systolic
 #### Boxplots for BMI and Heart Rate
 This plot helps us compare the distributions of body mass index (BMI) and heart rate for individuals with and without CHD.
 
-#### Coronary Artery Disease by Stroke
+#### Coronary Heart Disease by Stroke
 This helps us understand the relationship between stroke and CHD risk.
 
-#### Coronary Artery Disease by Diastolic Blood Pressure
+#### Coronary Heart Disease by Diastolic Blood Pressure
 This helps us understand the relationship between DBP and CHD risk specifically for the subgroup.
