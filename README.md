@@ -68,7 +68,7 @@ A stacked bar chart is created using ggplot2 to visualize the prevalence of coro
 
 ![Gender](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/CHD%20by%20gender.png)
 
-The provided image shows the prevalence of coronary heart disease (CHD) by males, since the "Yes CHD" segment is slightly taller for males compared to females.
+The provided image shows the prevalence of coronary heart disease (CHD) by males, since the "CHD" segment is slightly taller for males compared to females.
 
 #### Coronary Heart Disease by Age
 A similar stacked bar chart is created to show the prevalence of CHD across different age groups. This can reveal trends in CHD prevalence across different age groups. You might observe an increasing prevalence of CHD with advancing age, though the specific trends would depend on the data distribution.
@@ -98,7 +98,7 @@ This plot helps us compare the blood pressure distributions between the systolic
 
 **Diastolic Blood Pressure**: While the difference in median values is less pronounced than in systolic blood pressure, individuals with CHD still tend to have higher diastolic blood pressure and more variability.
 
-This analysis reinforces the significance of systolic blood pressure as a stronger indicator of coronary heart disease compared to diastolic blood pressure in this dataset. However, diastolic blood pressure also shows some degree of association with CHD.
+This analysis reinforces the significance of systolic blood pressure (systolic hypertension) as a stronger indicator of coronary heart disease compared to diastolic blood pressure (diastolic hypertension) in this dataset. However, diastolic blood pressure also shows some degree of association with CHD.
 
 #### Boxplots for Body Mass Index and Total Cholesterol
 This plot helps us compare the distributions of body mass index (BMI) and Total Cholesterol for individuals with and without CHD.
@@ -114,10 +114,51 @@ While there are slight tendencies for higher BMI and higher cholesterol in indiv
 #### Coronary Heart Disease and Diabetes
 Lastly, let's compare the relationship between diabetes and CHD risk.
 
-![Diabetes]([https://raw.githubusercontent.com/naonaotan/logistic-regression/main/CHD%20by%20diabetes.png](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/CHD%20and%20diabetes.png))
+![Diabetes](https://raw.githubusercontent.com/naonaotan/logistic-regression/main/CHD%20by%20diabetes.png)
 
 - The vast majority of individuals in the dataset do not have diabetes (indicated by the tall bars at 0).
 - Among those without diabetes, a significantly larger portion did not develop CHD (dark blue bar) compared to those who did develop CHD (light blue bar).
-- For individuals with diabetes (1), the light blue bar is very small, indicating that relatively few individuals with diabetes developed CHD. However, it is difficult to make a detailed comparison due to the small sample size of individuals with diabetes.
-In conclusion, the imbalance in the dataset between those with and without diabetes makes it difficult to draw definitive conclusions.
-A larger or more balanced sample of individuals with diabetes could provide a clearer understanding of the relationship between diabetes and CHD.
+- For individuals with diabetes (1), approximately 36.7% of diabetics developed CHD.
+Despite of the majority of the studied population is non-diabetic, the chart clearly illustrates the higher vulnerability of diabetic individuals to developing coronary heart disease. 
+
+### Defining the Profile of Individuals at Risk for Coronary Heart Disease (CHD)
+
+Based on the analysis of various health and demographic factors, we can outline a comprehensive profile of individuals at an increased risk for developing coronary heart disease (CHD). The factors considered include gender, age, systolic blood pressure (sysBP), diastolic blood pressure (diaBP), body mass index (BMI), total cholesterol (totChol), and diabetes status.
+
+#### Gender:
+- **Men** have a higher incidence of CHD compared to women. This trend is consistent across various age groups and other risk factors, highlighting the need for targeted interventions for male populations.
+
+#### Age:
+- **Older age** is a significant risk factor for CHD. As age increases, the likelihood of developing CHD rises, emphasizing the importance of preventive care and monitoring in older adults.
+
+#### Systolic Blood Pressure (sysBP):
+- Individuals with **higher systolic blood pressure** readings are more prone to developing CHD. Both systolic and diastolic pressures are critical indicators, but systolic pressure shows a stronger association with CHD risk.
+
+#### Diastolic Blood Pressure (diaBP):
+- Elevated **diastolic blood pressure** is also associated with an increased risk of CHD, although its impact is slightly less pronounced than that of systolic blood pressure. Maintaining optimal blood pressure levels is crucial for cardiovascular health.
+
+#### Body Mass Index (BMI):
+- **Higher BMI** values correlate with a greater risk of CHD. Overweight and obese individuals are more likely to develop cardiovascular diseases, stressing the importance of weight management and healthy lifestyle choices.
+
+#### Total Cholesterol (totChol):
+- Elevated **total cholesterol levels** are a significant risk factor for CHD. High cholesterol contributes to the buildup of plaques in the arteries, leading to cardiovascular complications. Regular monitoring and management of cholesterol levels are vital.
+
+#### Diabetes:
+- **Diabetes** dramatically increases the risk of CHD. Diabetic individuals are more than twice as likely to develop CHD compared to non-diabetic individuals. Effective diabetes management is essential for reducing cardiovascular risk.
+
+### Combined Risk Profile:
+1. **Male Gender**: Males show a higher predisposition to CHD.
+2. **Older Age**: Age significantly contributes to CHD risk, with older adults being more vulnerable.
+3. **High Blood Pressure**: Both elevated systolic and diastolic blood pressure levels are critical risk factors.
+4. **High BMI**: Overweight and obesity are strongly linked to increased CHD risk.
+5. **High Total Cholesterol**: Elevated cholesterol levels are a major contributor to CHD.
+6. **Diabetes**: Diabetic individuals face a significantly higher risk of CHD.
+
+### Preventive Measures:
+- **Regular Health Check-ups**: Frequent monitoring of blood pressure, cholesterol levels, and blood sugar is crucial.
+- **Healthy Diet and Exercise**: Adopting a balanced diet and regular physical activity can help manage weight, blood pressure, and cholesterol.
+- **Medications**: For individuals at high risk, medications to control blood pressure, cholesterol, and diabetes may be necessary.
+- **Lifestyle Changes**: Reducing smoking, limiting alcohol intake, and managing stress can contribute to better cardiovascular health.
+
+### Conclusion:
+The profile of individuals at risk for CHD includes being male, older age, hypertension, overweight, elevated total cholesterol, and having diabetes. Understanding these risk factors can aid in early identification and intervention, ultimately reducing the incidence and impact of coronary heart disease. Regular monitoring, healthy lifestyle choices, and appropriate medical interventions are key strategies in managing and mitigating CHD risk.
