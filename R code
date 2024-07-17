@@ -59,11 +59,20 @@ glm(TenYearCHD ~ glucose, family = binomial(link = "logit"), data = framingham)
 
 
 # Histogram to visualize Coronary Heart Disease by Sex
-histogramsex <- ggplot(framingham, aes(x = factor(male), fill = factor(TenYearCHD))) +
-  geom_bar(position = "stack", stat = "count") +
-  labs(title = "Coronary Heart Disease by Gender", x = "Gender: 0=Fem, 1=Male", y = "Count") +
-  scale_fill_manual(values = c("#1E2C3C", "#49A4E4"))
-print(histogramsex)
+Create a proportional bar plot for Gender vs CHD with counts
+gender_plot_with_counts <- ggplot(framingham, aes(x = as.factor(male), fill = as.factor(TenYearCHD))) +
+  geom_bar(position = "fill", stat = "count") +
+  labs(title = "Coronary Heart Disease by Gender", 
+       x = "Gender", 
+       y = "Proportion") +
+  scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
+                    name = "CHD Status", 
+                    labels = c("No CHD", "CHD")) +
+  scale_x_discrete(labels = c("0" = "Female", "1" = "Male")) +  # Renaming the x-axis labels
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +  # Center the plot title
+  geom_text(stat = 'count', aes(label = ..count..), position = position_fill(vjust = 0.5), color = "white")
+print(gender_plot_with_counts)
 
 # Histogram to visualize Coronary Heart Disease by Age
 histogramage <- ggplot(framingham, aes(x = age, fill = factor(TenYearCHD))) +
@@ -122,14 +131,16 @@ combined_plot <- plot_grid(bmi_plot, chol_histogram, ncol = 1, rel_heights = c(1
 print(combined_plot)
 
 # Histogram of Diabetes
-diabetes_plot <- ggplot(framingham, aes(x = as.factor(diabetes), fill = as.factor(TenYearCHD))) +
-  geom_bar(position = "stack", stat = "count") +
+diabetes_plot_with_counts <- ggplot(framingham, aes(x = as.factor(diabetes), fill = as.factor(TenYearCHD))) +
+  geom_bar(position = "fill", stat = "count") +
   labs(title = "Coronary Heart Disease by Diabetes", 
        x = "Diabetes Status", 
-       y = "Count") +
+       y = "Proportion") +
   scale_fill_manual(values = c("0" = "#1E2C3C", "1" = "#49A4E4"), 
                     name = "CHD Status", 
                     labels = c("No CHD", "CHD")) +
   theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5)) # Center the plot title
-print(diabetes_plot)
+  theme(plot.title = element_text(hjust = 0.5)) + # Center the plot title
+  geom_text(stat='count', aes(label=..count..), position=position_fill(vjust=0.5), color="white")
+
+print(diabetes_plot_with_counts)
